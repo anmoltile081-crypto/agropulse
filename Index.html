@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AgroPulse - किसान ऐप</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- शीर्ष हेडर -->
+    <header class="app-header">
+      <div class="logo-box">
+        <div class="logo-icon">🌾</div>
+        <div>
+          <h1 class="logo-title">AgroPulse <span class="tag-bharat">भारत</span></h1>
+          <p class="logo-subtitle">आपका डिजिटल खेत-साथी</p>
+        </div>
+      </div>
+      <button class="bell-btn" id="govBellBtn" title="सरकारी योजनाएं">
+        🔔
+        <span class="bell-dot"></span>
+      </button>
+    </header>
+
+    <!-- मुख्य सामग्री क्षेत्र -->
+    <main class="app-main">
+      
+      <!-- 1. होम स्क्रीन -->
+      <section id="tab-home" class="tab-content active">
+        <div class="weather-card">
+          <div class="weather-top">
+            <div>
+              <span class="badge-pill">📍 आज का मौसम • चित्तौड़गढ़</span>
+              <div class="temp-text">31°C <span class="weather-desc">धूप खिली है</span></div>
+            </div>
+            <div class="sun-icon">☀️</div>
+          </div>
+          <div class="weather-stats">
+            <span>बारिश: <strong>5%</strong></span>
+            <span>नमी: <strong>42%</strong></span>
+            <span>हवा: <strong>12 km/h</strong></span>
+          </div>
+          <div class="weather-alert">
+            ✓ अगले 48 घंटे सूखा रहेगा—फसल हकाई व स्प्रे के लिए उत्तम दिन!
+          </div>
+        </div>
+
+        <h3 class="section-heading">मुख्य सेवाएं</h3>
+        <div class="services-grid">
+          <div class="service-card card-green" data-target="doctor">
+            <div class="icon-circle bg-green-light">🔍</div>
+            <div class="service-name">फसल डॉक्टर</div>
+            <div class="service-desc">रोग पहचानें</div>
+          </div>
+
+          <div class="service-card card-yellow" data-target="mandi">
+            <div class="icon-circle bg-yellow-light">📈</div>
+            <div class="service-name">मंडी भाव</div>
+            <div class="service-desc">आज के ताज़ा रेट</div>
+          </div>
+
+          <div class="service-card card-blue" data-target="fertilizer">
+            <div class="icon-circle bg-blue-light">📦</div>
+            <div class="service-name">खाद-दवा स्टॉक</div>
+            <div class="service-desc">यूरिया व DAP उपलब्धता</div>
+          </div>
+
+          <div class="service-card card-red" data-target="tractor">
+            <div class="icon-circle bg-red-light">🚜</div>
+            <div class="service-name">ट्रैक्टर बुकिंग</div>
+            <div class="service-desc">हकाई ऑन-डिमांड</div>
+          </div>
+        </div>
+
+        <div class="voice-banner">
+          <div class="voice-info">
+            <div class="mic-circle">🎙️</div>
+            <div>
+              <div class="voice-title">बोलकर कुछ भी पूछें</div>
+              <div class="voice-sub">स्थानीय बोली में सवाल करें</div>
+            </div>
+          </div>
+          <button class="voice-btn" id="voiceAlertBtn">बोलें</button>
+        </div>
+      </section>
+
+      <!-- 2. फसल डॉक्टर स्क्रीन (गैलरी व कैमरा अपलोड) -->
+      <section id="tab-doctor" class="tab-content">
+        <div class="screen-title-center">
+          <h2>फसल डॉक्टर (रोग पहचान)</h2>
+          <p>पौधे की पत्ती या तने की फोटो खींचें</p>
+        </div>
+
+        <!-- हिडन फाइल इनपुट -->
+        <input type="file" id="cropFileInput" accept="image/*" style="display:none;">
+
+        <div class="upload-zone" id="uploadZone">
+          <div class="cam-icon">📷</div>
+          <p class="upload-bold">फोटो खींचें या गैलरी से चुनें</p>
+          <p class="upload-sub">यहाँ टैप करें</p>
+        </div>
+
+        <div class="preview-box hidden" id="previewBox">
+          <div class="image-wrapper">
+            <img id="imagePreview" src="" alt="फसल फोटो">
+            <button class="remove-img-btn" id="removeImgBtn">✕</button>
+          </div>
+          <button class="primary-btn bg-kheti" id="runScanBtn">🔍 रोग की जांच करें</button>
+        </div>
+
+        <div class="loader-box hidden" id="scanLoader">
+          <div class="spinner"></div>
+          <p>पत्तियों की जांच की जा रही है...</p>
+        </div>
+
+        <div class="result-box hidden" id="scanResult">
+          <div class="result-head">
+            <div>
+              <span class="badge-red">पहचान पूर्ण (95% सटीकता)</span>
+              <h3>मक्के का फॉल आर्मीवॉर्म</h3>
+            </div>
+            <span class="badge-emoji">🌽</span>
+          </div>
+          <div class="remedy-card remedy-organic">
+            <strong>🌱 देसी/सस्ता उपाय (लागत: ₹40):</strong>
+            <p>5% नीम के बीज का अर्क (NSKE) या 15 लीटर पानी में 50 मिली नीम तेल मिलाकर शाम को छिड़कें।</p>
+          </div>
+          <div class="remedy-card remedy-chemical">
+            <strong>🧪 अनुशंसित दवा:</strong>
+            <p><strong>स्पिनोटोरम 11.7% SC</strong> की 0.5 मिली प्रति लीटर पानी में नापकर छिड़काव करें।</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. मंडी भाव स्क्रीन -->
+      <section id="tab-mandi" class="tab-content">
+        <div class="flex-between">
+          <div>
+            <h2 class="title-red">लाइव मंडी भाव</h2>
+            <p class="sub-text">आज के प्रमाणित स्थानीय भाव</p>
+          </div>
+          <span class="pill-tag">प्रतिदिन अपडेट</span>
+        </div>
+
+        <div class="list-cards">
+          <div class="list-item">
+            <div class="item-left">
+              <span class="crop-emoji">🌽</span>
+              <div>
+                <h4>देशी मक्का</h4>
+                <p>चित्तौड़गढ़ मंडी</p>
+              </div>
+            </div>
+            <div class="item-right">
+              <div class="price-quintal">₹2,250 <span>/क्विंटल</span></div>
+              <div class="price-kilo">₹22.50 /किलो</div>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="item-left">
+              <span class="crop-emoji">🌾</span>
+              <div>
+                <h4>मालवराज गेहूँ</h4>
+                <p>कपासन उप-मंडी</p>
+              </div>
+            </div>
+            <div class="item-right">
+              <div class="price-quintal">₹2,480 <span>/क्विंटल</span></div>
+              <div class="price-kilo">₹24.80 /किलो</div>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="item-left">
+              <span class="crop-emoji">🫘</span>
+              <div>
+                <h4>चना (देसी)</h4>
+                <p>उदयपुर मुख्य मंडी</p>
+              </div>
+            </div>
+            <div class="item-right">
+              <div class="price-quintal">₹5,800 <span>/क्विंटल</span></div>
+              <div class="price-kilo">₹58.00 /किलो</div>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="item-left">
+              <span class="crop-emoji">🌻</span>
+              <div>
+                <h4>सरसों (Mustard)</h4>
+                <p>कोटा मंडी</p>
+              </div>
+            </div>
+            <div class="item-right">
+              <div class="price-quintal">₹5,420 <span>/क्विंटल</span></div>
+              <div class="price-kilo">₹54.20 /किलो</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. खाद-दवा स्टॉक स्क्रीन -->
+      <section id="tab-fertilizer" class="tab-content">
+        <div>
+          <h2 class="title-blue">खाद-दवा लाइव स्टॉक</h2>
+          <p class="sub-text">स्टॉक जांचें व सरकारी दर पर ऑनलाइन टोकन लें</p>
+        </div>
+
+        <div class="list-cards">
+          <div class="stock-card">
+            <div class="flex-between">
+              <div>
+                <span class="badge-stock">उपलब्ध (140 बोरी)</span>
+                <h4>नीम लेपित यूरिया (45kg)</h4>
+                <p class="shop-name">ग्राम सेवा सहकारी समिति (LAMPS)</p>
+              </div>
+              <div class="text-right">
+                <div class="mrp-old">MRP ₹300</div>
+                <div class="mrp-actual">₹266.50</div>
+                <div class="badge-gov">सरकारी तय मूल्य</div>
+              </div>
+            </div>
+            <div class="stock-foot">
+              <span>दूरी: 1.8 किमी</span>
+              <button class="token-btn" data-item="यूरिया">टोकन बुक करें</button>
+            </div>
+          </div>
+
+          <div class="stock-card">
+            <div class="flex-between">
+              <div>
+                <span class="badge-stock">उपलब्ध (45 बोरी)</span>
+                <h4>DAP 18:46:00 (इफको)</h4>
+                <p class="shop-name">किसान एग्रो सेंटर, कलेक्ट्री रोड</p>
+              </div>
+              <div class="text-right">
+                <div class="mrp-actual">₹1,350</div>
+                <div class="badge-gov">नियंत्रित दर</div>
+              </div>
+            </div>
+            <div class="stock-foot">
+              <span>दूरी: 3.2 किमी</span>
+              <button class="token-btn" data-item="DAP">टोकन बुक करें</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. ट्रैक्टर व उपकरण बुकिंग स्क्रीन -->
+      <section id="tab-tractor" class="tab-content">
+        <div>
+          <h2 class="title-gerua">ट्रैक्टर व हकाई बुकिंग</h2>
+          <p class="sub-text">पास के ट्रैक्टर मालिक को समय तय करके रिक्वेस्ट भेजें</p>
+        </div>
+
+        <div class="list-cards">
+          <div class="tractor-card">
+            <div class="flex-between">
+              <div>
+                <h4>महिंद्रा 575 DI (कल्टीवेटर + रोटावेटर)</h4>
+                <p class="owner-line">मालिक: <strong>रामलाल गुर्जर</strong> • 2.5 किमी दूर</p>
+                <div class="rating-line">⭐ 4.9 (42 हकाई सफल)</div>
+              </div>
+              <div class="text-right">
+                <div class="tractor-price">₹450 <span>/बीघा</span></div>
+                <div class="sub-price">₹800/घंटा</div>
+              </div>
+            </div>
+
+            <!-- डायनेमिक एक्शन एरिया -->
+            <div class="tractor-action-area" id="tractorActionRamlal">
+              <button class="primary-btn bg-gerua btn-sm" id="bookSlotBtn">
+                तारीख व समय चुनें
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. किसान चौपाल स्क्रीन -->
+      <section id="tab-community" class="tab-content">
+        <div class="flex-between">
+          <div>
+            <h2 class="title-kheti">किसान चौपाल</h2>
+            <p class="sub-text">स्थानीय किसानों से बातचीत व अनुभव</p>
+          </div>
+          <button class="primary-btn bg-kheti btn-sm" id="newPostBtn">+ नई पोस्ट</button>
+        </div>
+
+        <div class="post-card">
+          <div class="post-user">
+            <div class="user-avatar">स</div>
+            <div>
+              <h5>सुरेश पाटीदार</h5>
+              <p>गांव: धनेत कलां • 1 घंटा पहले</p>
+            </div>
+          </div>
+          <p class="post-body">
+            भाइयों, मक्के में इस बार मैंने यूरिया की जगह जैविक जीवामृत का छिड़काव किया था, परिणाम बहुत अच्छा है। पत्ते हरे हैं और लागत 80% घटी है!
+          </p>
+          <div class="post-actions">
+            <button class="like-btn" id="likeBtn">❤️ <span id="likeCount">14</span> किसान सहमत</button>
+            <span class="comment-count">💬 6 चर्चाएं</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- बॉटम नेविगेशन बार -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-tab="home">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">होम</span>
+      </button>
+      <button class="nav-item" data-tab="doctor">
+        <span class="nav-icon">🔍</span>
+        <span class="nav-label">डॉक्टर</span>
+      </button>
+      <button class="nav-item" data-tab="mandi">
+        <span class="nav-icon">📈</span>
+        <span class="nav-label">मंडी भाव</span>
+      </button>
+      <button class="nav-item" data-tab="fertilizer">
+        <span class="nav-icon">📦</span>
+        <span class="nav-label">खाद-दवा</span>
+      </button>
+      <button class="nav-item" data-tab="tractor">
+        <span class="nav-icon">🚜</span>
+        <span class="nav-label">ट्रैक्टर</span>
+      </button>
+      <button class="nav-item" data-tab="community">
+        <span class="nav-icon">👥</span>
+        <span class="nav-label">चौपाल</span>
+      </button>
+    </nav>
+
+    <!-- MODAL 1: सरकारी योजनाएं -->
+    <div class="modal-overlay hidden" id="govModal">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3>🔔 सरकारी योजना व सब्सिडी अलर्ट</h3>
+          <button class="modal-close" id="closeGovModal">✕</button>
+        </div>
+        <div class="scheme-list">
+          <div class="scheme-item border-haldi">
+            <span class="scheme-deadline">अंतिम तिथि: 25 अक्टूबर</span>
+            <h4>राजस्थान खेत तारबंदी योजना</h4>
+            <p>आवारा पशुओं से सुरक्षा हेतु 50% से 70% सब्सिडी। ई-मित्र से आवेदन करें।</p>
+          </div>
+          <div class="scheme-item border-kheti">
+            <span class="scheme-open">नया आवेदन जारी</span>
+            <h4>पीएम कुसुम सोलर पंप योजना</h4>
+            <p>खेत में 3HP/5HP सोलर पंप पर 60% सहायता राशि।</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 2: समय व स्लॉट चयन -->
+    <div class="modal-overlay hidden" id="bookingModal">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3>हकाई का समय तय करें</h3>
+          <button class="modal-close" id="closeBookingModal">✕</button>
+        </div>
+        <div class="modal-body">
+          <label class="form-label">तारीख चुनें</label>
+          <input type="date" id="bookDateInput" class="form-input">
+
+          <label class="form-label">पसंदीदा समय स्लॉट</label>
+          <div class="slots-container">
+            <button class="slot-pill" data-slot="सुबह 7-11">सुबह 7 - 11</button>
+            <button class="slot-pill active" data-slot="दोपहर 1-4">दोपहर 1 - 4</button>
+            <button class="slot-pill" data-slot="शाम 4-7">शाम 4 - 7</button>
+          </div>
+
+          <label class="form-label">काम का प्रकार व बीघा</label>
+          <select id="workSelect" class="form-input">
+            <option>गहरी हकाई (Ploughing) - 3 बीघा</option>
+            <option>रोटावेटर जुताई - 2 बीघा</option>
+            <option>कल्टीवेटर - 4 बीघा</option>
+          </select>
+
+          <button class="primary-btn bg-gerua full-width" id="submitRequestBtn">
+            मालिक को रिक्वेस्ट भेजें
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 3: चैट बॉक्स -->
+    <div class="modal-overlay hidden" id="chatModal">
+      <div class="modal-sheet chat-sheet">
+        <div class="chat-header">
+          <div>
+            <h4>रामलाल गुर्जर (ट्रैक्टर मालिक)</h4>
+            <p>स्वीकृत • ऑनलाइन</p>
+          </div>
+          <div class="chat-controls">
+            <a href="tel:9829012345" class="call-btn" title="फ़ोन लगाएं">📞 कॉल</a>
+            <button class="modal-close white" id="closeChatModal">✕</button>
+          </div>
+        </div>
+        <div class="chat-body" id="chatMessages">
+          <div class="chat-msg system">
+            ✓ <strong>रामलाल जी ने आपकी हकाई रिक्वेस्ट स्वीकार कर ली है!</strong>
+          </div>
+          <div class="chat-msg incoming">
+            रामलाल: "राम राम सा! कल दोपहर 1 बजे आपके खेत पर आ जाऊंगा।"
+          </div>
+        </div>
+        <div class="chat-footer">
+          <input type="text" id="chatInput" placeholder="संदेश या खेत का लैंडमार्क लिखें...">
+          <button class="send-btn" id="sendMsgBtn">भेजें</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

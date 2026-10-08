@@ -1,0 +1,781 @@
+/* राजस्थानी पारंपरिक रंग चर (CSS Variables) */
+:root {
+  --gerua: #C84B31;       /* गहरा गेरुआ / टेराकोटा */
+  --haldi: #E59819;       /* हल्दी पीला */
+  --kheti: #2D5A27;       /* मखमली फसल हरा */
+  --morpankhi: #1A365D;   /* शाही मोरपंखी नीला */
+  --khadi: #FDFBF7;       /* खादी बैकग्राउंड */
+  --text-dark: #2B2523;
+  --text-muted: #665E5A;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #EDE8DE;
+  color: var(--text-dark);
+  display: flex;
+  justify-content: center;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  background-color: var(--khadi);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 70px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+/* हेडर */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: var(--gerua);
+  color: #fff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--haldi);
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  background-color: var(--haldi);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.logo-title {
+  font-size: 18px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-bharat {
+  font-size: 10px;
+  background-color: var(--haldi);
+  color: #000;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.logo-subtitle {
+  font-size: 11px;
+  color: #FEEBC8;
+}
+
+.bell-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  position: relative;
+}
+
+.bell-dot {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--haldi);
+  border-radius: 50%;
+  border: 2px solid var(--gerua);
+}
+
+/* मुख्य बॉडी */
+.app-main {
+  flex: 1;
+  padding: 16px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* मौसम कार्ड */
+.weather-card {
+  background: linear-gradient(135deg, var(--morpankhi), #2A4D7F);
+  color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+}
+
+.weather-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge-pill {
+  font-size: 11px;
+  background-color: var(--haldi);
+  color: #000;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.temp-text {
+  font-size: 28px;
+  font-weight: 900;
+  margin-top: 4px;
+}
+
+.weather-desc {
+  font-size: 14px;
+  font-weight: normal;
+  color: #BFDBFE;
+}
+
+.sun-icon {
+  font-size: 38px;
+}
+
+.weather-stats {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: 10px;
+  padding-top: 8px;
+  font-size: 11px;
+  color: #E2E8F0;
+}
+
+.weather-alert {
+  background-color: rgba(0,0,0,0.25);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #FEF08A;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+/* सर्विसेज ग्रिड */
+.section-heading {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.service-card {
+  background-color: #fff;
+  padding: 14px;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  transition: transform 0.1s;
+}
+
+.service-card:active {
+  transform: scale(0.97);
+}
+
+.card-green { border-color: rgba(45, 90, 39, 0.2); }
+.card-yellow { border-color: rgba(229, 152, 25, 0.2); }
+.card-blue { border-color: rgba(26, 54, 93, 0.2); }
+.card-red { border-color: rgba(200, 75, 49, 0.2); }
+
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.bg-green-light { background-color: #ECFDF5; }
+.bg-yellow-light { background-color: #FEF3C7; }
+.bg-blue-light { background-color: #EFF6FF; }
+.bg-red-light { background-color: #FEF2F2; }
+
+.service-name {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.service-desc {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* वॉयस बैनर */
+.voice-banner {
+  background-color: #FEF3C7;
+  border: 1px solid rgba(229, 152, 25, 0.4);
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voice-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mic-circle {
+  width: 36px;
+  height: 36px;
+  background-color: var(--haldi);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voice-title { font-size: 12px; font-weight: bold; }
+.voice-sub { font-size: 10px; color: var(--text-muted); }
+
+.voice-btn {
+  background-color: var(--gerua);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* फसल डॉक्टर */
+.screen-title-center {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.screen-title-center h2 { font-size: 18px; color: var(--kheti); font-weight: 900; }
+.screen-title-center p { font-size: 11px; color: var(--text-muted); }
+
+.upload-zone {
+  border: 2px dashed rgba(45, 90, 39, 0.4);
+  background-color: #ECFDF5;
+  border-radius: 16px;
+  padding: 28px 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cam-icon {
+  width: 60px;
+  height: 60px;
+  background-color: var(--kheti);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 10px auto;
+}
+
+.upload-bold { font-size: 14px; font-weight: bold; }
+.upload-sub { font-size: 11px; color: var(--text-muted); }
+
+.preview-box {
+  background: #fff;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  margin-top: 14px;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.remove-img-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.loader-box {
+  text-align: center;
+  padding: 24px;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 4px solid var(--kheti);
+  border-top-color: transparent;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.result-box {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 14px;
+  border: 2px solid rgba(45, 90, 39, 0.3);
+}
+
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #E2E8F0;
+  padding-bottom: 8px;
+}
+
+.badge-red {
+  font-size: 10px;
+  background-color: #FEE2E2;
+  color: #991B1B;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.remedy-card {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.remedy-organic { background-color: #ECFDF5; border: 1px solid #A7F3D0; }
+.remedy-chemical { background-color: #F8FAFC; border: 1px solid #E2E8F0; }
+
+/* लिस्ट कार्ड्स (मंडी, स्टॉक, ट्रैक्टर) */
+.list-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.list-item, .stock-card, .tractor-card, .post-card {
+  background-color: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid #E2E8F0;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-red { color: var(--gerua); font-weight: 900; font-size: 18px; }
+.title-blue { color: var(--morpankhi); font-weight: 900; font-size: 18px; }
+.title-gerua { color: var(--gerua); font-weight: 900; font-size: 18px; }
+.title-kheti { color: var(--kheti); font-weight: 900; font-size: 18px; }
+.sub-text { font-size: 11px; color: var(--text-muted); }
+
+.pill-tag {
+  background-color: #FEF3C7;
+  color: var(--gerua);
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #FDE68A;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crop-emoji { font-size: 26px; }
+.price-quintal { font-size: 16px; font-weight: 900; color: var(--kheti); }
+.price-quintal span { font-size: 11px; font-weight: normal; color: var(--text-muted); }
+.price-kilo { font-size: 11px; font-weight: bold; color: var(--text-muted); }
+
+/* स्टॉक कार्ड */
+.badge-stock {
+  font-size: 10px;
+  background-color: #D1FAE5;
+  color: #065F46;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.shop-name { font-size: 11px; color: var(--text-muted); }
+.mrp-old { font-size: 11px; color: #94A3B8; text-decoration: line-through; }
+.mrp-actual { font-size: 18px; font-weight: 900; color: var(--kheti); }
+.badge-gov { font-size: 9px; color: #047857; font-weight: bold; }
+
+.stock-foot {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #F1F5F9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.token-btn {
+  background-color: var(--morpankhi);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ट्रैक्टर कार्ड */
+.owner-line { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.rating-line { font-size: 11px; color: var(--haldi); font-weight: bold; margin-top: 2px; }
+.tractor-price { font-size: 16px; font-weight: 900; color: var(--gerua); }
+.tractor-price span { font-size: 11px; font-weight: normal; }
+.sub-price { font-size: 10px; color: var(--text-muted); }
+
+.tractor-action-area {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #F1F5F9;
+}
+
+.status-badge-pending {
+  background-color: #FEF3C7;
+  border: 1px solid #FDE68A;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #92400E;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-badge-accepted {
+  background-color: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #065F46;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* बटन शैलियाँ */
+.primary-btn {
+  border: none;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+  transition: transform 0.1s;
+}
+
+.primary-btn:active { transform: scale(0.97); }
+.bg-gerua { background-color: var(--gerua); }
+.bg-kheti { background-color: var(--kheti); }
+.btn-sm { font-size: 11px; padding: 6px 12px; }
+.full-width { width: 100%; }
+
+/* चौपाल */
+.post-user { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  background-color: var(--haldi);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.post-user h5 { font-size: 12px; }
+.post-user p { font-size: 10px; color: var(--text-muted); }
+.post-body { font-size: 11px; line-height: 1.5; color: #334155; }
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #F1F5F9;
+  margin-top: 10px;
+  padding-top: 8px;
+  font-size: 11px;
+}
+.like-btn { background: none; border: none; color: var(--gerua); font-weight: bold; cursor: pointer; }
+
+/* बॉटम नेविगेशन */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background-color: #fff;
+  border-top: 1px solid #E2E8F0;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  z-index: 40;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.nav-item.active {
+  color: var(--gerua);
+}
+
+.nav-icon { font-size: 18px; }
+.nav-label { font-size: 10px; font-weight: bold; margin-top: 2px; }
+
+/* मोडल */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal-sheet {
+  background-color: #fff;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 20px 20px 0 0;
+  padding: 18px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E2E8F0;
+  padding-bottom: 10px;
+}
+
+.modal-header h3 { font-size: 15px; color: var(--morpankhi); }
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #94A3B8;
+  cursor: pointer;
+}
+
+.scheme-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.scheme-item {
+  padding: 12px;
+  border-radius: 10px;
+  border-left: 4px solid;
+}
+.border-haldi { border-left-color: var(--haldi); background-color: #FEF3C7; }
+.border-kheti { border-left-color: var(--kheti); background-color: #ECFDF5; }
+.scheme-deadline { font-size: 9px; background: var(--haldi); font-weight: bold; padding: 2px 6px; border-radius: 4px; }
+.scheme-open { font-size: 9px; background: var(--kheti); color:#fff; font-weight: bold; padding: 2px 6px; border-radius: 4px; }
+
+/* फॉर्म कंट्रोल्स */
+.form-label { font-size: 11px; font-weight: bold; display: block; margin: 10px 0 4px 0; }
+.form-input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #CBD5E1;
+  font-size: 12px;
+}
+
+.slots-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.slot-pill {
+  padding: 8px;
+  border: 2px solid #E2E8F0;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.slot-pill.active {
+  border-color: var(--gerua);
+  background-color: #FEF2F2;
+  color: var(--gerua);
+}
+
+/* चैट मोडल */
+.chat-sheet {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.chat-header {
+  background-color: var(--gerua);
+  color: #fff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px 20px 0 0;
+}
+
+.chat-controls { display: flex; align-items: center; gap: 10px; }
+.call-btn {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+  background-color: var(--khadi);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-msg {
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 11px;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+.chat-msg.system {
+  background-color: #D1FAE5;
+  color: #065F46;
+  max-width: 100%;
+}
+
+.chat-msg.incoming {
+  background-color: #fff;
+  border: 1px solid #E2E8F0;
+  align-self: flex-start;
+}
+
+.chat-msg.outgoing {
+  background-color: var(--gerua);
+  color: #fff;
+  align-self: flex-end;
+}
+
+.chat-footer {
+  padding: 10px 14px;
+  background: #fff;
+  border-top: 1px solid #E2E8F0;
+  display: flex;
+  gap: 8px;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  font-size: 11px;
+  outline: none;
+}
+
+.send-btn {
+  background-color: var(--gerua);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-close.white { color: #fff; }
+.hidden { display: none !important; }
